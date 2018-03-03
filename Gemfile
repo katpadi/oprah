@@ -37,7 +37,10 @@ gem 'kaminari'
 gem 'devise'
 gem 'pundit'
 
-gem 'simplecov', require: false, group: :test
+group :test do
+  gem 'pundit-matchers', '~> 1.4.1'
+  gem 'simplecov', require: false
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
