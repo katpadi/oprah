@@ -1,0 +1,10 @@
+class Api < Grape::API
+  prefix 'api'
+  version 'v1', using: :path
+  # version 'v1', using: :header, vendor: 'oprah'
+  format :json
+
+  helpers Pundit
+
+  mount V1::Base
+end
