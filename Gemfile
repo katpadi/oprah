@@ -28,24 +28,10 @@ gem 'rack-cors'
 # grape API
 gem 'grape'
 gem 'grape-entity'
-
 gem 'grape_on_rails_routes'
-
 gem 'grape-swagger'
-# gem 'grape-swagger-rails'
-# gem 'grape-swagger-entity'
 
 gem 'kaminari'
-
-# gem 'grape', '~> 0.16'
-# gem 'grape-entity'
-# gem 'grape-swagger'
-# gem 'grape-swagger-entity'
-# gem 'json'
-# gem 'newrelic_rpm'
-# gem 'rack-cors'
-# gem 'mime-types'
-# gem 'nokogiri'
 
 # Authentication / Authorization
 gem 'devise'
