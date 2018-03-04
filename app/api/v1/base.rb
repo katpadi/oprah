@@ -9,8 +9,8 @@ module V1
     # Endpoints
     mount V1::Prizes
     mount V1::Entries
-    mount V1::Winners
     mount V1::Users
+    mount V1::Winners
     route :any, '*path' do
       render_error!('not_found_error', 'Path not found', 404)
     end

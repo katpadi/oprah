@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221174101) do
+ActiveRecord::Schema.define(version: 20180303194925) do
 
   create_table "entries", force: :cascade do |t|
     t.text "comment"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20180221174101) do
     t.integer "prize_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "won_at"
   end
 
   create_table "prizes", force: :cascade do |t|
