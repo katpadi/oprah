@@ -11,8 +11,8 @@
 
 ```
 Oprah
-*=========
-"You get a prize. You get a prize! Everyone gets a prize!!!"*
+=========
+*"You get a prize. You get a prize! Everyone gets a prize!!!"*
 
 A simple API to create giveaways and choose a random winner from responses.
 
