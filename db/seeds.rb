@@ -8,11 +8,12 @@
 
 
 
-User.first_or_create(name: 'Kat Guest', email: 'guest@katpadi.ph', password: '12345678', role: 0)
-user = User.first_or_create(name: 'Kat', email: 'user@katpadi.ph', password: '12345678', role: 1)
-admin = User.first_or_create(name: 'Kat Admin', email: 'admin@katpadi.ph', password: '12345678', role: 2)
+User.create(name: 'Kat Guest', email: 'guest@katpadi.ph', password: '12345678', role: :guest)
+user = User.create(name: 'Kat', email: 'user@katpadi.ph', password: '12345678', role: :user)
+admin = User.create(name: 'Kat Admin', email: 'admin@katpadi.ph', password: '12345678', role: :admin)
 
 prizes = Prize.create([{ user: admin, name: 'DJI Mavic Pro', description: 'woah this is awesome' }, { user: user, name: 'Nintendo Switch', description: 'lollololol' }])
-
-prizes.first.entries.create([{ comment: 'Pick me!', user: user }, { comment: 'Dibs!!!!', user: user }])
+prize = prizes.first
+prize.entries.create([{ comment: 'Pick me!', user: user }, { comment: 'Ako na lang. ako na lang ulit', user: user }, { comment: 'Yepppp!!', user: user }, { comment: 'Yeaaaaaaaaa!', user: user }])
 prizes.last.entries.create([{ comment: 'Coolcoolcool', user: user }])
+WinnerProcessor.new(prize.entries, prize, admin).process
