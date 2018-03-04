@@ -2,16 +2,17 @@ require 'grape-swagger'
 
 module V1
   class Base < Grape::API
-    helpers ::Helpers::DefaultsHelpers
 
-    include ::Helpers::AuthHelpers
+    helpers ::Helpers::DefaultsHelpers
     include V1::ExceptionsHandler
 
     # Endpoints
     mount V1::Prizes
     mount V1::Entries
+    mount V1::Winners
+    mount V1::Users
     route :any, '*path' do
-      error!('Path not found', 404)
+      render_error!('not_found_error', 'Path not found', 404)
     end
 
     # Documentation

@@ -1,5 +1,6 @@
 module V1
   class Prizes < Base
+    include ::Helpers::AuthHelpers
 
     resource :prizes do
       desc 'Get list of all prizes',

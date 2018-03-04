@@ -14,7 +14,6 @@ module V1
         when 'ActiveRecord::RecordNotFound'
           render_error!('not_found_error', e.message, 404)
         else
-          ap e.message
           render_error!('server_error', e.message, 500)
         end
       end

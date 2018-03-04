@@ -1,5 +1,6 @@
 module V1
   class Entries < Base
+    include ::Helpers::AuthHelpers
 
     resource :entries do
       desc 'Get list of all entries',
