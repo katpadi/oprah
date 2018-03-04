@@ -8,7 +8,13 @@ class User < ApplicationRecord
   has_many :prizes, dependent: :destroy
 
   validates_presence_of :name
-  validates_uniqueness_of :email
+  validates :email, presence: true,
+                    uniqueness: true,
+                    format: { with: Devise::email_regexp  }
+  validates :password, presence: true,
+                       confirmation: true,
+                       length: { within: 8..20 },
+                       on: :create
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

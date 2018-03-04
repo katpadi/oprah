@@ -1,26 +1,20 @@
-class UserPolicy
-  attr_reader :current_user, :model
+class UserPolicy < ApplicationPolicy
+  attr_reader :user, :record
 
-  def initialize(current_user, model)
-    @current_user = current_user
-    @user = model
+  def initialize(user, record)
+    @user = user
+    @record = record
   end
 
-  def get?
-    @current_user.admin?
-  end
-
-  def show?
-    @current_user.admin? or @current_user == @user
+  def post?
+    user.admin? || user.user?
   end
 
   def put?
-    @current_user.admin?
+    user.admin? || record.id == user.id
   end
 
   def delete?
-    return false if @current_user == @user
-    @current_user.admin?
+    user.admin? || record.id == user.id
   end
-
 end
