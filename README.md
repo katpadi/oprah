@@ -1,24 +1,17 @@
-# README
+```
+ _____                 _
+|  _  |               | |
+| | | |_ __  _ __ __ _| |__
+| | | | '_ \| '__/ _` | '_ \
+\ \_/ / |_) | | | (_| | | | |
+ \___/| .__/|_|  \__,_|_| |_|
+      | |
+      |_|
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+Oprah
+=========
+"You get a prize. You get a prize! Everyone gets a prize!!!"
 
-Things you may want to cover:
+A simple API to create a giveaway and choose a random winner from responses.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
