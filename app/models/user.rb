@@ -12,12 +12,15 @@ class User < ApplicationRecord
                     uniqueness: true,
                     format: { with: Devise::email_regexp  }
   validates :password, presence: true,
-                       confirmation: true,
                        length: { within: 8..20 },
-                       on: :create
+                       if: :validate_password?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def validate_password?
+    new_record? || password.present?
+  end
 end

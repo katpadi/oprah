@@ -52,12 +52,23 @@ module V1
                       [406, 'Invalid record', Entities::Error],
                       [404, 'Resource not found', Entities::Error]]
         params do
-          optional :name, type: String
+          optional :email, type: String, desc: 'Email of user', regexp: Devise::email_regexp
+          optional :name, type: String, desc: 'Name of user'
+          optional :current_password, type: String, desc: 'Current password of user'
+          optional :password, type: String, desc: 'New password of user'
+          all_or_none_of :current_password, :password
         end
         put do
           user = User.find params[:id]
           authorize user, :put?
-          user.update!(declared_params)
+          if params[:current_password].blank?
+            user.assign_attributes declared(params, include_missing: false)
+            user.save!
+          else
+            custom_invalid_error!('Password incorrect') unless user.valid_password?(params[:current_password])
+            custom_invalid_error!(user.errors.full_messages.first) unless user.update_with_password(declared_params)
+            user
+          end
           present user, with: Entities::User
         end
 

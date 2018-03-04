@@ -110,6 +110,32 @@ RSpec.describe 'Users API', type: :request do
           expect(response).to have_http_status(406)
         end
       end
+
+      context 'updating password' do
+        context 'password is short' do
+          it 'returns status code 422' do
+            payload = valid_payload.merge(password: 'short')
+            put "/api/v1/users/#{user.id}", params: payload, headers: auth_for(user)
+            expect(response).to have_http_status(422)
+          end
+        end
+
+        context 'current_password and password not both present' do
+          it 'returns status code 422' do
+            payload = valid_payload.merge(password: 'luh')
+            put "/api/v1/users/#{user.id}", params: payload, headers: auth_for(user)
+            expect(response).to have_http_status(422)
+          end
+        end
+
+        context 'current_password is invalid' do
+          it 'returns status code 406' do
+            payload = valid_payload.merge(password: 'heynewpassword', current_password: 'blah')
+            put "/api/v1/users/#{user.id}", params: payload, headers: auth_for(user)
+            expect(response).to have_http_status(406)
+          end
+        end
+      end
     end
 
     context 'when record does not exist' do

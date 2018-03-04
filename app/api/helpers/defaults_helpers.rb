@@ -20,6 +20,10 @@ module Helpers
       present paged_records, with: with
     end
 
+    def custom_invalid_error!(msg = 'Invalid record error')
+      render_error!('invalid_record_error', msg, 406)
+    end
+
     def paginate(context)
       context.page(params[:page]).per(params[:per_page])
     end
