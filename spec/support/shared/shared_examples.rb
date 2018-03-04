@@ -12,13 +12,6 @@ shared_examples_for 'Unauthorized' do
   end
 end
 
-shared_examples_for 'PUT authorization' do
-  it_behaves_like 'Common authorization'
-end
-shared_examples_for 'DELETE authorization' do
-  it_behaves_like 'Common authorization'
-end
-
 shared_examples_for 'POST authorization' do
   context 'guest role' do
     before { send(http_method, url, params: params, headers: auth_for(guest)) }
@@ -62,8 +55,15 @@ shared_examples_for 'GET authorization' do
   end
 end
 
+shared_examples_for 'PUT authorization' do
+  it_behaves_like 'common authorization'
+end
+shared_examples_for 'DELETE authorization' do
+  it_behaves_like 'common authorization'
+end
+
 # Common for both PUT and DELETE
-shared_examples_for 'Common authorization' do
+shared_examples_for 'common authorization' do
   context 'guest role' do
     before { send(http_method, url, params: params, headers: auth_for(guest)) }
     it_behaves_like 'Unauthorized'
